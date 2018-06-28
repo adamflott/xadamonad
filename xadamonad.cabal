@@ -1,0 +1,64 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5cde4df918a83c7bf89a99f719e77123d6865fde9436550c31e2c35eb4c59096
+
+name:           xadamonad
+version:        1.0.0
+synopsis:       Adam Flott's xmonad config
+description:    Adam Flott's xmonad config
+category:       Development
+homepage:       https://github.com/adamflott/xadamonad#readme
+bug-reports:    https://github.com/adamflott/xadamonad/issues
+maintainer:     Adam Flott <adam@adamflott.com>
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/adamflott/xadamonad
+
+executable taffybar
+  main-is: taffybar.hs
+  other-modules:
+      Paths_xadamonad
+  hs-source-dirs:
+      ./.
+  default-extensions: AutoDeriveTypeable BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MonadFailDesugaring MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      base
+    , containers
+    , data-default
+    , dbus
+    , taffybar ==0.4.6
+    , xmonad
+    , xmonad-contrib
+    , xmonad-extras
+    , xmonad-wallpaper
+  default-language: Haskell2010
+
+executable xmonad
+  main-is: xmonad.hs
+  other-modules:
+      Paths_xadamonad
+  hs-source-dirs:
+      ./.
+  default-extensions: AutoDeriveTypeable BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MonadFailDesugaring MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  build-depends:
+      base
+    , containers
+    , data-default
+    , dbus
+    , taffybar ==0.4.6
+    , xmonad
+    , xmonad-contrib
+    , xmonad-extras
+    , xmonad-wallpaper
+  default-language: Haskell2010
