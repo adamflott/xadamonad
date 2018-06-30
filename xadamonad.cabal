@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5cde4df918a83c7bf89a99f719e77123d6865fde9436550c31e2c35eb4c59096
+-- hash: 9b101a333834c1e3c12f88034eb606ed32f5bdd022f2fd5f8b8f9b01c60cce8f
 
 name:           xadamonad
 version:        1.0.0
@@ -30,17 +30,17 @@ executable taffybar
   hs-source-dirs:
       ./.
   default-extensions: AutoDeriveTypeable BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MonadFailDesugaring MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
-  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base
+      X11 >=1.8
+    , base
     , containers
-    , data-default
-    , dbus
-    , taffybar ==0.4.6
-    , xmonad
-    , xmonad-contrib
-    , xmonad-extras
-    , xmonad-wallpaper
+    , directory
+    , filepath
+    , gtk-traymanager >=0.1.6
+    , gtk3
+    , taffybar
+    , xmonad-contrib >=0.13
   default-language: Haskell2010
 
 executable xmonad
@@ -50,13 +50,14 @@ executable xmonad
   hs-source-dirs:
       ./.
   default-extensions: AutoDeriveTypeable BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MonadFailDesugaring MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
-  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:
       base
     , containers
     , data-default
     , dbus
-    , taffybar ==0.4.6
+    , taffybar
+    , utf8-string >=1.0
     , xmonad
     , xmonad-contrib
     , xmonad-extras
