@@ -61,7 +61,7 @@ dependencies:
   - containers
   - data-default
   - dbus
-  - taffybar == 0.4.6
+  - taffybar
   - xmonad
   - xmonad-contrib
   - xmonad-extras
@@ -75,3 +75,17 @@ executables:
   taffybar:
     main: taffybar.hs
     source-dirs: .
+    ghc-options:
+      -threaded
+      -rtsopts
+      -with-rtsopts=-N
+    dependencies:
+      - base
+      - containers
+      - directory
+      - filepath
+      - gtk3
+      - gtk-traymanager>=0.1.6
+      - taffybar
+      - xmonad-contrib>=0.13
+      - X11>=1.8

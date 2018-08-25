@@ -2,22 +2,36 @@
 
 # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
 #resolver: nightly-2018-06-18
-resolver: lts-11.15
+resolver: lts-12.7
 
 # Local packages, usually specified by relative directory name
 packages:
 - '.'
-
+- './xmonad-wallpaper-0.0.1.4'
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
-- xmonad-wallpaper-0.0.1.4
+
+- ConfigFile-1.1.4
+- alsa-mixer-0.2.0.3
+- dbus-hslogger-0.1.0.1
+- gi-dbusmenu-0.4.1
+- gi-dbusmenugtk3-0.4.2
+- gi-gdkx11-3.0.2
+- gi-xlib-2.0.2
+- gtk-sni-tray-0.1.5.0
+- gtk-strut-0.1.2.1
+- gtk-traymanager-1.0.1
 - magic-1.1
-- taffybar-0.4.6
-- gtk-0.14.10
-- gtk-traymanager-0.1.6
-- time-1.6.0.1
-- gio-0.13.5.0
+- rate-limit-1.4.0
+- spool-0.1
+- status-notifier-item-0.3.0.0
+- taffybar-3.0.0
+- time-units-1.0.0
+- xml-helpers-1.0.0
+- xmonad-0.14.2
+- xmonad-contrib-0.14
+- xmonad-extras-0.14
 
 # Override default flag values for local packages and extra-deps
 flags: {}
