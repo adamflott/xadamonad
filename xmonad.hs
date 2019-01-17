@@ -262,5 +262,4 @@ myStartUpHook home_dir = do
     spawn "setxkbmap -option ctrl:nocaps"
     spawn "xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 1"
     spawn "xscreensaver"
-    spawn "xmobar"
     return ()

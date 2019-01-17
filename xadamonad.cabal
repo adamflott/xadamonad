@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d9fe006bc2214f0f42be23857d605873c8bb4792009502d857f8d8d9ebe634ab
+-- hash: 7d288ea63d88306dca1cd07b3130b9fadb46c7257b3cb73605e2a5a3a88b709d
 
 name:           xadamonad
 version:        1.0.0
@@ -37,6 +37,7 @@ executable xmonad
     , containers
     , data-default
     , dbus
+    , xmobar
     , xmonad >=0.15
     , xmonad-contrib
     , xmonad-extras

@@ -12,9 +12,13 @@ packages:
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
 - magic-1.1
+- xmobar-0.29.4
+- iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a
 
 # Override default flag values for local packages and extra-deps
-flags: {}
+flags:
+  xmobar:
+    all_extensions: true
 
 # Extra package databases containing global packages
 extra-package-dbs: []

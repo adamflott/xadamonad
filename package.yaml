@@ -65,6 +65,7 @@ dependencies:
   - xmonad-contrib
   - xmonad-extras
   - xmonad-wallpaper
+  - xmobar
 
 executables:
   xmonad:
