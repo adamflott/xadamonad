@@ -6,14 +6,15 @@ import System.Exit
 
 -- Hackage
 import Data.Default
-import System.Taffybar.Support.PagerHints (pagerHints)
 import qualified Data.Map as M
 
--- Xmonad
+-- xmonad
 import XMonad
-import XMonad.Actions.Volume
+import qualified XMonad.StackSet as W
+
+-- xmonad-contrib
 import XMonad.Config.Desktop
-import XMonad.Hooks.DynamicLog ()
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -24,9 +25,13 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Pass
-import XMonad.Wallpaper
-import qualified XMonad.StackSet as W
+import XMonad.Util.Run
 
+-- xmonad-extra
+import XMonad.Actions.Volume
+
+-- xmonad-wallpaper
+import XMonad.Wallpaper
 
 
 myManageHook = composeAll
@@ -36,10 +41,10 @@ myManageHook = composeAll
     , className =? "Chromium"       --> doShift "2:web"
     , className =? "Google-chrome"  --> doShift "2:web"
     , className =? "Emacs"          --> doShift "3:code"
-    , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "Kodi"           --> doShift "5:media"
     , className =? "scribus"        --> doShift "8:writing"
     , className =? "Okular"         --> doShift "7:reading"
+    , className =? "VirtualBox"     --> doShift "9:vm"
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Gimp"           --> doFloat
     , title     =? "pinentry-gtk-2" --> doFloat
@@ -205,7 +210,7 @@ myMouseBindings XConfig {XMonad.modMask = modMask} = M.fromList
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook = handleEventHook def <+> docksEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -213,7 +218,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+
 
 main :: IO ()
 main = do
@@ -222,11 +227,13 @@ main = do
     hd <- lookupEnv "HOME"
     let home_dir = fromMaybe "/home/adam/" hd
 
-    let workspaces = ["1:chat","2:web","3:code","4:vm","5:media","6:extra", "7:reading", "8:writing", "9:misc"]
+    let workspaces = ["1:chat","2:web","3:code","4:vm","5:media","6:extra", "7:reading", "8:writing", "9:vm"]
 
-    xmonad $ docks $ ewmh $ pagerHints $ desktopConfig {
+    xmproc <- spawnPipe "xmobar"
+
+    xmonad $ desktopConfig {
         -- simple stuff
-        terminal           = "terminology",
+        terminal           = "konsole",
         focusFollowsMouse  = True,
         borderWidth        = 4,
         modMask            = myModMask,
@@ -240,17 +247,20 @@ main = do
 
         -- hooks, layouts
         layoutHook         = smartBorders myLayout,
-        manageHook         = myManageHook <+> manageHook desktopConfig,
+        manageHook         = myManageHook <+> manageDocks <+> manageHook defaultConfig,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = dynamicLogWithPP xmobarPP
+          { ppOutput          = hPutStrLn xmproc
+          , ppTitle           = xmobarColor "darkgreen"  "" . shorten 20
+          , ppHiddenNoWindows = xmobarColor "grey" ""
+          },
         startupHook        = setWMName "LG3D" <+> myStartUpHook home_dir
     }
 
 myStartUpHook :: String -> X ()
 myStartUpHook home_dir = do
     spawn "setxkbmap -option ctrl:nocaps"
-    spawn "xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 2"
+    spawn "xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 1"
     spawn "xscreensaver"
-    spawn "setsid arbtt-capture"
-    spawn (home_dir ++ ".local/bin/taffybar")
+    spawn "xmobar"
     return ()

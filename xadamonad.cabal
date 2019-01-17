@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3c1a048a485706069dd2c6cb690c8d33b2cb37c175d7d31eb09988e1449c28be
+-- hash: d9fe006bc2214f0f42be23857d605873c8bb4792009502d857f8d8d9ebe634ab
 
 name:           xadamonad
 version:        1.0.0
@@ -15,38 +17,12 @@ maintainer:     Adam Flott <adam@adamflott.com>
 license:        MIT
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     CHANGELOG.md
 
 source-repository head
   type: git
   location: https://github.com/adamflott/xadamonad
-
-executable taffybar
-  main-is: taffybar.hs
-  other-modules:
-      Paths_xadamonad
-  hs-source-dirs:
-      ./.
-  default-extensions: AutoDeriveTypeable BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MonadFailDesugaring MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
-  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      X11 >=1.8
-    , base
-    , containers
-    , data-default
-    , dbus
-    , directory
-    , filepath
-    , gtk-traymanager >=0.1.6
-    , gtk3
-    , taffybar
-    , xmonad
-    , xmonad-contrib >=0.13
-    , xmonad-extras
-    , xmonad-wallpaper
-  default-language: Haskell2010
 
 executable xmonad
   main-is: xmonad.hs
@@ -61,8 +37,7 @@ executable xmonad
     , containers
     , data-default
     , dbus
-    , taffybar
-    , xmonad
+    , xmonad >=0.15
     , xmonad-contrib
     , xmonad-extras
     , xmonad-wallpaper
