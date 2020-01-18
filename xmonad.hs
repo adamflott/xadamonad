@@ -1,7 +1,5 @@
 -- base
 import Control.Monad
-import Data.Maybe
-import System.Environment
 import System.Exit
 
 -- Hackage
@@ -15,17 +13,15 @@ import qualified XMonad.StackSet as W
 -- xmonad-contrib
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Pass
-import XMonad.Util.Run
+import XMonad.Prompt.Shell
 
 -- xmonad-extra
 import XMonad.Actions.Volume
@@ -54,7 +50,7 @@ myManageHook = composeAll
 
 
 
-myLayout = avoidStruts (
+myLayouts = avoidStruts (
     Tall 1 (3/100) (1/2)            |||
     Mirror (Tall 1 (3/100) (1/2))   |||
     tabbed shrinkText tabConfig     |||
@@ -73,6 +69,13 @@ tabConfig = def {
     inactiveColor       = "#000000"
 }
 
+myXPConfig = def
+  { position          = Top
+  , alwaysHighlight   = True
+  , promptBorderWidth = 0
+  , font              = "xft:monospace:size=9"
+  }
+
 -- Keys ------------------------------------------------------------------------
 
 myModMask :: KeyMask
@@ -88,15 +91,8 @@ xK_XF86XK_AudioLowerVolume = 0x1008FF11
 xK_XF86XK_AudioRaiseVolume :: KeySym
 xK_XF86XK_AudioRaiseVolume = 0x1008FF13
 
--- xK_XF86XK_AudioPrev        = 0x1008FF16
--- xK_XF86XK_AudioNext        = 0x1008FF17
--- xK_XF86XK_AudioPlay        = 0x1008FF14
-
-xK_XF86Eject :: KeySym
-xK_XF86Eject = 0x1008FF2C
-
-myKeys :: String -> XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys home_dir conf@XConfig {XMonad.modMask = modMask} = M.fromList $
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
   [
     -- launch a terminal
     ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
@@ -104,17 +100,10 @@ myKeys home_dir conf@XConfig {XMonad.modMask = modMask} = M.fromList $
    -- Lock the screen using xscreensaver.
   , ((modMask .|. controlMask, xK_l), spawn "xscreensaver-command -lock")
 
-  -- Launch dmenu via yeganesh.
-  , ((modMask, xK_p),
-     spawn $ "$(" ++ home_dir ++ "/.local/bin/yeganesh -x -- -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#000000' -nf '#ffffff' -sb '#7c7c7c' -sf '#ceffac')")
-
   -- Lower, raise, mute volume.
   , ((0, xK_XF86XK_AudioLowerVolume), void (lowerVolume 3))
   , ((0, xK_XF86XK_AudioRaiseVolume), void (raiseVolume 3))
   , ((0, xK_XF86AudioMute), void toggleMute)
-
-  -- Eject CD tray.
-  , ((0, xK_XF86Eject), spawn "eject -T")
 
   -- pass(1) prompt
   , ((modMask .|. controlMask , xK_p), passPrompt ((def XPC) { font = "xft:Fira Mono:style=Bold" }))
@@ -176,6 +165,9 @@ myKeys home_dir conf@XConfig {XMonad.modMask = modMask} = M.fromList $
 
   -- Restart xmonad
   , ((modMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
+
+  , ((modMask, xK_p), shellPrompt myXPConfig)
+
   ]
   ++
 
@@ -222,14 +214,11 @@ myEventHook = handleEventHook def <+> docksEventHook
 
 main :: IO ()
 main = do
-    setRandomWallpaper ["$HOME/Pictures", "/void/pictures/wallpapers"]
-
-    hd <- lookupEnv "HOME"
-    let home_dir = fromMaybe "/home/adam/" hd
+    setRandomWallpaper ["/void/pictures/wallpapers"]
 
     let workspaces = ["1:chat","2:web","3:code","4:vm","5:media","6:extra", "7:reading", "8:writing", "9:vm"]
 
-    xmproc <- spawnPipe "xmobar"
+    spawn "xmobar"
 
     xmonad $ desktopConfig {
         -- simple stuff
@@ -242,23 +231,19 @@ main = do
         focusedBorderColor = "#ceffac",
 
         -- key bindings
-        keys               = myKeys home_dir,
+        keys               = myKeys,
         mouseBindings      = myMouseBindings,
 
         -- hooks, layouts
-        layoutHook         = smartBorders myLayout,
-        manageHook         = myManageHook <+> manageDocks <+> manageHook defaultConfig,
-        handleEventHook    = myEventHook,
-        logHook            = dynamicLogWithPP xmobarPP
-          { ppOutput          = hPutStrLn xmproc
-          , ppTitle           = xmobarColor "darkgreen"  "" . shorten 20
-          , ppHiddenNoWindows = xmobarColor "grey" ""
-          },
-        startupHook        = setWMName "LG3D" <+> myStartUpHook home_dir
+        layoutHook      = desktopLayoutModifiers myLayouts,
+        manageHook      = myManageHook <+> manageDocks <+> manageHook def,
+        handleEventHook = myEventHook,
+        logHook         = dynamicLogString def >>= xmonadPropLog,
+        startupHook     = myStartUpHook
     }
 
-myStartUpHook :: String -> X ()
-myStartUpHook home_dir = do
+myStartUpHook :: X ()
+myStartUpHook = do
     spawn "setxkbmap -option ctrl:nocaps"
     spawn "xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 1"
     spawn "xscreensaver"

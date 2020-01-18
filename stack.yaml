@@ -1,42 +1,32 @@
-# For more information, see: http://docs.haskellstack.org/en/stable/yaml_configuration.html
+resolver: nightly-2020-01-17
+#resolver: lts-13.3
 
-# Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
-#resolver: nightly-2018-11-24
-resolver: lts-13.3
-
-# Local packages, usually specified by relative directory name
 packages:
 - '.'
 - './xmonad-wallpaper-0.0.1.4'
 
-# Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
-- magic-1.1
-- xmobar-0.29.4
-- iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a
+- xmobar-0.32
+- iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a,921
+- magic-1.1@sha256:3a31ca1c49fa5f6a857f647471739bd240a6020af6ae43e71fb72201fc482fa2,928
 
-# Override default flag values for local packages and extra-deps
 flags:
   xmobar:
     all_extensions: true
 
-# Extra package databases containing global packages
 extra-package-dbs: []
 
-# Control whether we use the GHC we find on the path
-system-ghc: false
-
-# Require a specific version of stack, using version ranges
-# require-stack-version: -any # Default
-# require-stack-version: >= 1.0.0
-
-# Override the architecture used by stack, especially useful on Windows
-# arch: i386
-# arch: x86_64
-
-# Extra directories used by stack for building
-# extra-include-dirs: [/path/to/dir]
-# extra-lib-dirs: [/path/to/dir]
-
-# Allow a newer minor version of GHC than the snapshot specifies
-# compiler-check: newer-minor
+nix:
+  enable: true
+  packages:
+  - file
+  - wirelesstools
+  - alsaLib.dev
+  - zlib
+  - xorg.libX11
+  - xorg.libXrandr
+  - xorg.libXScrnSaver
+  - pkg-config
+  - xorg.libXext
+  - xorg.libXft
+  - xorg.libXpm
