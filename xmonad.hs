@@ -13,6 +13,7 @@ import qualified XMonad.StackSet as W
 -- xmonad-contrib
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Fullscreen
@@ -70,6 +71,7 @@ tabConfig = def {
     inactiveColor       = "#000000"
 }
 
+myXPConfig :: XPConfig
 myXPConfig = def
   { position          = Top
   , alwaysHighlight   = True
@@ -188,8 +190,8 @@ myMouseBindings XConfig {XMonad.modMask = modMask} = M.fromList
     , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
 
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w
-                                          >> windows W.shiftMaster))
+    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w
+                                          >> windows W.shiftMaster)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
 
@@ -217,7 +219,7 @@ main = do
 
     spawn "xmobar"
 
-    xmonad $ desktopConfig {
+    xmonad $ ewmh $ desktopConfig {
         -- simple stuff
         terminal           = "konsole",
         focusFollowsMouse  = True,
