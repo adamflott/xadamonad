@@ -22,6 +22,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Pass
 import XMonad.Prompt.Shell
+import XMonad.Util.EZConfig
 
 -- xmonad-extra
 import XMonad.Actions.Volume
@@ -81,15 +82,6 @@ myXPConfig = def
 myModMask :: KeyMask
 myModMask = mod4Mask
 
--- Apple Magic Keyboard with Numeric Keypad - US English
-xK_XF86AudioMute :: KeySym
-xK_XF86AudioMute = 0x1008FF12
-
-xK_XF86XK_AudioLowerVolume :: KeySym
-xK_XF86XK_AudioLowerVolume = 0x1008FF11
-
-xK_XF86XK_AudioRaiseVolume :: KeySym
-xK_XF86XK_AudioRaiseVolume = 0x1008FF13
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
@@ -100,10 +92,6 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
    -- Lock the screen using xscreensaver.
   , ((modMask .|. controlMask, xK_l), spawn "xscreensaver-command -lock")
 
-  -- Lower, raise, mute volume.
-  , ((0, xK_XF86XK_AudioLowerVolume), void (lowerVolume 3))
-  , ((0, xK_XF86XK_AudioRaiseVolume), void (raiseVolume 3))
-  , ((0, xK_XF86AudioMute), void toggleMute)
 
   -- pass(1) prompt
   , ((modMask .|. controlMask , xK_p), passPrompt ((def XPC) { font = "xft:Fira Mono:style=Bold" }))
@@ -179,6 +167,15 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 
+easyKeys :: [(String, X ())]
+easyKeys = [
+      ("<XF86AudioLowerVolume>", void (lowerVolume 3))
+    , ("<XF86AudioRaiseVolume>", void (raiseVolume 3))
+    , ("<XF86AudioMute>", void toggleMute)
+    , ("<XF86AudioPlay>", spawn "cmus-remote --pause-playback")
+    , ("<XF86AudioNext>", spawn "cmus-remove --next")
+    , ("<XF86AudioPrev>", spawn "cmus-remove --prev")
+    ]
 
 -- Mouse bindings --------------------------------------------------------------
 myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
@@ -240,7 +237,7 @@ main = do
         handleEventHook = myEventHook,
         logHook         = dynamicLogString def >>= xmonadPropLog,
         startupHook     = myStartUpHook
-    }
+    } `additionalKeysP` easyKeys
 
 myStartUpHook :: X ()
 myStartUpHook = do
