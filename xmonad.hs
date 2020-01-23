@@ -175,8 +175,8 @@ easyKeys = [
     , ("<XF86AudioRaiseVolume>", void (raiseVolume 3))
     , ("<XF86AudioMute>", void toggleMute)
     , ("<XF86AudioPlay>", spawn "cmus-remote --pause-playback")
-    , ("<XF86AudioNext>", spawn "cmus-remove --next")
-    , ("<XF86AudioPrev>", spawn "cmus-remove --prev")
+    , ("<XF86AudioNext>", spawn "cmus-remote --next")
+    , ("<XF86AudioPrev>", spawn "cmus-remote --prev")
     ]
 
 -- Mouse bindings --------------------------------------------------------------
