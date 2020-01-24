@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.32.0.
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ea92aababab5e7d64d5bac191d379215fb6e5d24599c64d6c80a3639e8cd496e
+-- hash: 5a84d33f4d940bf8c214f6c9efb3c9384b3ed61226cec0d9d58ea7d98eb625f4
 
 name:           xadamonad
 version:        1.0.0
@@ -37,6 +37,7 @@ executable xmonad
     , containers
     , data-default
     , dbus
+    , hostname
     , xmobar
     , xmonad >=0.15
     , xmonad-contrib

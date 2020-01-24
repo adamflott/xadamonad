@@ -5,6 +5,7 @@ import System.Exit
 -- Hackage
 import Data.Default
 import qualified Data.Map as M
+import Network.HostName
 
 -- xmonad
 import XMonad
@@ -31,6 +32,26 @@ import XMonad.Actions.Volume
 -- xmonad-wallpaper
 import XMonad.Wallpaper
 
+data Profile = Profile {
+    profileWallpaperPaths :: [String]
+    , profileBorderWidth :: Dimension
+    , profileTerminal :: String
+    , profileStartupCmds :: [String]
+    }
+
+inanna = Profile {
+    profileWallpaperPaths = ["/void/pictures/wallpapers"]
+    , profileBorderWidth = 4
+    , profileTerminal = "konsole"
+    , profileStartupCmds = ["xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 1"]
+    }
+
+work = Profile {
+    profileWallpaperPaths = ["/home/aflott/Pictures"]
+    , profileBorderWidth = 2
+    , profileTerminal = "terminology"
+    , profileStartupCmds = []
+    }
 
 myManageHook = composeAll
     [
@@ -211,9 +232,17 @@ myEventHook = handleEventHook def <+> docksEventHook
 --
 
 
+
 main :: IO ()
 main = do
-    setRandomWallpaper ["/void/pictures/wallpapers"]
+    hn <- getHostName
+
+    let profile =
+            case hn of
+                "inanna"    -> inanna
+                "bos-lpsna" -> work
+
+    setRandomWallpaper (profileWallpaperPaths profile)
 
     let workspaces = ["1:chat","2:web","3:code","4:vm","5:media","6:extra", "7:reading", "8:writing", "9:vm"]
 
@@ -221,9 +250,9 @@ main = do
 
     xmonad $ ewmh $ desktopConfig {
         -- simple stuff
-        terminal           = "konsole",
+        terminal           = (profileTerminal profile),
         focusFollowsMouse  = True,
-        borderWidth        = 4,
+        borderWidth        = (profileBorderWidth profile),
         modMask            = myModMask,
         workspaces         = workspaces,
         normalBorderColor  = "#7c7c7c",
@@ -238,12 +267,14 @@ main = do
         manageHook      = myManageHook <+> manageDocks <+> manageHook def,
         handleEventHook = myEventHook,
         logHook         = dynamicLogString def >>= xmonadPropLog,
-        startupHook     = myStartUpHook
+        startupHook     = (myStartUpHook profile)
     } `additionalKeysP` easyKeys
 
-myStartUpHook :: X ()
-myStartUpHook = do
+myStartUpHook :: Profile -> X ()
+myStartUpHook p = do
     spawn "setxkbmap -option ctrl:nocaps"
-    spawn "xinput set-prop 'Logitech Trackball' 'libinput Accel Speed' 1"
     spawn "xscreensaver"
+
+    forM_ (profileStartupCmds p) (\cmd -> spawn cmd)
+
     return ()

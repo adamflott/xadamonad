@@ -59,6 +59,7 @@ dependencies:
   - containers
   - data-default
   - dbus
+  - hostname
   - xmonad>=0.15
   - xmonad-contrib
   - xmonad-extras
