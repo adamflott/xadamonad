@@ -24,3 +24,5 @@ cabal.project.local~
 prompt-history
 xmonad-x86_64-linux
 xmonad.errors
+.hie
+xmonad

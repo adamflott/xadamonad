@@ -5,29 +5,36 @@
 
 packages:
 - completed:
-    hackage: xmobar-0.32@sha256:f2cf80a8b524642ff28b8a821ebcba6908238080eb2df9ca09f02f643c92a83c,10784
+    hackage: xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
     pantry-tree:
-      size: 6129
-      sha256: e027adffb5b01c2c3dace8359545fb2a48f686e97d96b12eb452c97f11066a11
+      size: 2485
+      sha256: 6fd7c6a64621a088fcbb2e5a66030a78b0832d7341e4c465d3aeb4e668d097a5
   original:
-    hackage: xmobar-0.32
+    hackage: xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
 - completed:
-    hackage: iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a,921
+    hackage: xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
     pantry-tree:
-      size: 259
-      sha256: f867a93991b791adf4c65bb91f385effee7e18bd78d8e0a61fd03f42f6073705
+      size: 21783
+      sha256: 81a4589ef85fed434a852ba1324466b5ad8f4fd752cd88840aa4ea4348a16cec
   original:
-    hackage: iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a,921
+    hackage: xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
 - completed:
-    hackage: magic-1.1@sha256:3a31ca1c49fa5f6a857f647471739bd240a6020af6ae43e71fb72201fc482fa2,928
+    hackage: xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
     pantry-tree:
-      size: 535
-      sha256: 8fd594932f36cdf6a93266c48248a6c516d2aa237cd023eed6935ccee7ed230b
+      size: 1124
+      sha256: ecae540a0d6270021452384b317d056277b3beb2f1688535ed5e2ba7fd65668d
   original:
-    hackage: magic-1.1@sha256:3a31ca1c49fa5f6a857f647471739bd240a6020af6ae43e71fb72201fc482fa2,928
+    hackage: xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
+- completed:
+    hackage: relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
+    pantry-tree:
+      size: 4282
+      sha256: ead687d39d06c841de36fc214402ad4389e8837284485cfe52d975f51b274e81
+  original:
+    hackage: relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
 snapshots:
 - completed:
-    size: 457392
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2020/1/17.yaml
-    sha256: 8c2a25a0da9445dee2c63c5db2e079e44f16ff870bd9f56c554ac5ec60a0fd96
-  original: nightly-2020-01-17
+    size: 586296
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/18.yaml
+    sha256: 63539429076b7ebbab6daa7656cfb079393bf644971156dc349d7c0453694ac2
+  original: lts-18.18

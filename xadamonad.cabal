@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5a84d33f4d940bf8c214f6c9efb3c9384b3ed61226cec0d9d58ea7d98eb625f4
+-- hash: 22ca117e3b4fb3d990b387356fb11e305312c020ddbb753afc45eb7e5ca7fc90
 
 name:           xadamonad
 version:        1.0.0
@@ -29,18 +29,68 @@ executable xmonad
   other-modules:
       Paths_xadamonad
   hs-source-dirs:
-      ./.
-  default-extensions: BangPatterns BinaryLiterals ConstraintKinds DataKinds DefaultSignatures DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveTraversable DoAndIfThenElse EmptyDataDecls ExistentialQuantification FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NamedFieldPuns OverloadedStrings PartialTypeSignatures PatternGuards PolyKinds RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving TupleSections TypeFamilies TypeSynonymInstances ViewPatterns
-  ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+      ./
+  default-extensions:
+      BangPatterns
+      BinaryLiterals
+      BlockArguments
+      ConstraintKinds
+      DataKinds
+      DefaultSignatures
+      DeriveAnyClass
+      DeriveDataTypeable
+      DeriveFoldable
+      DeriveFunctor
+      DeriveGeneric
+      DeriveLift
+      DeriveTraversable
+      DerivingStrategies
+      DerivingVia
+      EmptyCase
+      EmptyDataDecls
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      GADTSyntax
+      GADTs
+      GeneralizedNewtypeDeriving
+      LambdaCase
+      MultiParamTypeClasses
+      MultiWayIf
+      NoMonomorphismRestriction
+      NoImplicitPrelude
+      NumDecimals
+      NumericUnderscores
+      OverloadedStrings
+      ParallelListComp
+      PatternGuards
+      PatternSynonyms
+      QuasiQuotes
+      RankNTypes
+      RecordWildCards
+      RecursiveDo
+      ScopedTypeVariables
+      StandaloneDeriving
+      StaticPointers
+      TemplateHaskell
+      TypeApplications
+      TypeFamilies
+      TypeFamilyDependencies
+      TypeInType
+      TypeOperators
+      TypeSynonymInstances
+      UnicodeSyntax
+      ViewPatterns
+  ghc-options: -Wall -O -fwarn-unused-imports -fhide-source-paths -Widentities -Wincomplete-uni-patterns -Wincomplete-record-updates -Wredundant-constraints -Wpartial-fields -fwrite-ide-info -hiedir=.hie -Wmissing-deriving-strategies -Wmissing-export-lists -funbox-strict-fields
   build-depends:
       base
     , containers
     , data-default
     , dbus
     , hostname
-    , xmobar
-    , xmonad >=0.15
-    , xmonad-contrib
-    , xmonad-extras
+    , relude >=1.0.0.1
+    , xmonad >=0.17
+    , xmonad-contrib >=0.17
+    , xmonad-extras >=0.17
     , xmonad-wallpaper
   default-language: Haskell2010

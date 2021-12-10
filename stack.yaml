@@ -1,18 +1,14 @@
-resolver: nightly-2020-01-17
-#resolver: lts-13.3
+resolver: lts-18.18
 
 packages:
 - '.'
-- './xmonad-wallpaper-0.0.1.4'
+- './xmonad-wallpaper-0.0.1.5'
 
 extra-deps:
-- xmobar-0.32
-- iwlib-0.1.0@sha256:226e4582d6878166a172ff98c868e25c4ed478ab28ab493498e464b1fe19d39a,921
-- magic-1.1@sha256:3a31ca1c49fa5f6a857f647471739bd240a6020af6ae43e71fb72201fc482fa2,928
-
-flags:
-  xmobar:
-    all_extensions: true
+- xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
+- xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
+- xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
+- relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
 
 extra-package-dbs: []
 

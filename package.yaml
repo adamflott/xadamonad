@@ -10,48 +10,72 @@ extra-source-files:
   - CHANGELOG.md
 
 ghc-options:
-  -Wall
-  -Wcompat
-  -Wincomplete-record-updates
-  -Wincomplete-uni-patterns
-  -Wredundant-constraints
+  - -Wall
+  - -O
+  - -fwarn-unused-imports
+  - -fhide-source-paths
+  - -Widentities
+  - -Wincomplete-uni-patterns
+  - -Wincomplete-record-updates
+  - -Wredundant-constraints
+  - -Wpartial-fields
+  - -fwrite-ide-info
+  - -hiedir=.hie
+  - -Wmissing-deriving-strategies
+  - -Wmissing-export-lists
+  - -funbox-strict-fields
+#  - -Werror
 
 default-extensions:
   - BangPatterns
   - BinaryLiterals
+  - BlockArguments
   - ConstraintKinds
   - DataKinds
   - DefaultSignatures
+  - DeriveAnyClass
   - DeriveDataTypeable
   - DeriveFoldable
   - DeriveFunctor
   - DeriveGeneric
+  - DeriveLift
   - DeriveTraversable
-  - DoAndIfThenElse
+  - DerivingStrategies
+  - DerivingVia
+  - EmptyCase
   - EmptyDataDecls
-  - ExistentialQuantification
   - FlexibleContexts
   - FlexibleInstances
   - FunctionalDependencies
+  - GADTSyntax
   - GADTs
   - GeneralizedNewtypeDeriving
-  - InstanceSigs
-  - KindSignatures
   - LambdaCase
   - MultiParamTypeClasses
   - MultiWayIf
-  - NamedFieldPuns
+  - NoMonomorphismRestriction
+  - NoImplicitPrelude
+  - NumDecimals
+  - NumericUnderscores
   - OverloadedStrings
-  - PartialTypeSignatures
+  - ParallelListComp
   - PatternGuards
-  - PolyKinds
+  - PatternSynonyms
+  - QuasiQuotes
   - RankNTypes
   - RecordWildCards
+  - RecursiveDo
   - ScopedTypeVariables
   - StandaloneDeriving
-  - TupleSections
+  - StaticPointers
+  - TemplateHaskell
+  - TypeApplications
   - TypeFamilies
+  - TypeFamilyDependencies
+  - TypeInType
+  - TypeOperators
   - TypeSynonymInstances
+  - UnicodeSyntax
   - ViewPatterns
 
 dependencies:
@@ -60,11 +84,11 @@ dependencies:
   - data-default
   - dbus
   - hostname
-  - xmonad>=0.15
-  - xmonad-contrib
-  - xmonad-extras
+  - xmonad >= 0.17
+  - xmonad-contrib >= 0.17
+  - xmonad-extras >= 0.17
   - xmonad-wallpaper
-  - xmobar
+  - relude >= 1.0.0.1
 
 executables:
   xmonad:
