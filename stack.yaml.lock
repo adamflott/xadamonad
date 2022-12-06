@@ -3,38 +3,10 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
-    pantry-tree:
-      size: 2485
-      sha256: 6fd7c6a64621a088fcbb2e5a66030a78b0832d7341e4c465d3aeb4e668d097a5
-  original:
-    hackage: xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
-- completed:
-    hackage: xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
-    pantry-tree:
-      size: 21783
-      sha256: 81a4589ef85fed434a852ba1324466b5ad8f4fd752cd88840aa4ea4348a16cec
-  original:
-    hackage: xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
-- completed:
-    hackage: xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
-    pantry-tree:
-      size: 1124
-      sha256: ecae540a0d6270021452384b317d056277b3beb2f1688535ed5e2ba7fd65668d
-  original:
-    hackage: xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
-- completed:
-    hackage: relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
-    pantry-tree:
-      size: 4282
-      sha256: ead687d39d06c841de36fc214402ad4389e8837284485cfe52d975f51b274e81
-  original:
-    hackage: relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
+packages: []
 snapshots:
 - completed:
-    size: 586296
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/18.yaml
-    sha256: 63539429076b7ebbab6daa7656cfb079393bf644971156dc349d7c0453694ac2
-  original: lts-18.18
+    sha256: 03cec7d96ed78877b03b5c2bc5e31015b47f69af2fe6a62d994a42b7a43c5805
+    size: 648659
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/3.yaml
+  original: lts-20.3

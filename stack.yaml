@@ -1,14 +1,11 @@
-resolver: lts-18.18
+#resolver: nightly-2022-07-11
+resolver: lts-20.3
 
 packages:
 - '.'
 - './xmonad-wallpaper-0.0.1.5'
 
-extra-deps:
-- xmonad-0.17.0@sha256:fc90c8fa647390c68c902912a5a7417f04025dfe72f7de51b248217f7ca0d484,5533
-- xmonad-contrib-0.17.0@sha256:defd04a9ca0e031eb7280b734ccd6d6b73f757babfe4a561a7ff718e75211749,20357
-- xmonad-extras-0.17.0@sha256:13dcfeaa77aeb305816c4297a506fad172d53e6a61be19382f0aa3c7ac0d75c7,3352
-- relude-1.0.0.1@sha256:35bcdaf14018e79f11e712b0e2314c1aac79976f28f4adc179985457493557d5,11569
+extra-deps: []
 
 extra-package-dbs: []
 
