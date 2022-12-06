@@ -49,13 +49,9 @@ data Profile = Profile
 inanna :: Profile
 inanna = Profile { profileWallpaperPaths = ["/void/pictures/wallpapers"]
                  , profileBorderWidth    = 4
-                 , profileTerminal       = "terminology"
+                 , profileTerminal       = "alacritty"
                  , profileStartupCmds    = []
                  }
-
-work :: Profile
-work =
-    Profile { profileWallpaperPaths = ["/home/aflott/Pictures"], profileBorderWidth = 2, profileTerminal = "terminology", profileStartupCmds = [] }
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
@@ -245,7 +241,6 @@ main = do
 
     let profile = case hn of
             "inanna"    -> inanna
-            "bos-lpsna" -> work
             _           -> error "unknown profile name"
 
     setRandomWallpaper (profileWallpaperPaths profile)
